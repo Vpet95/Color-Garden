@@ -6,6 +6,7 @@ var audioSamples = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
 var color = "#000000";
 var dirX = 0, dirY = 0; 
 var ghosts = []; //ghost squares
+var sampled = false;
 
 //generates a random hex color
 function generateColor() {
@@ -34,4 +35,27 @@ function rgbToHex(r, g, b) {
     if (r > 255 || g > 255 || b > 255)
         throw "Invalid color component";
     return ((r << 16) | (g << 8) | b).toString(16);
+}
+
+//get the colors from 
+var getColors = function(ev) {
+    if(!sampled) {
+        var mouseX = ev.clientX;
+        var mouseY = ev.clientY;
+
+        var tempContext = this.getContext("2d");
+        var data = tempContext.getImageData(mouseX, mouseY, 1, 1).data;
+        var tempC = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
+
+        console.log(mouseX, mouseY, tempC);
+        if(tempC != "#000000") {
+            var lbl = document.getElementById("colorLabel");
+            lbl.innerHTML = tempC;
+            lbl.style.color = tempC;
+        }
+        sampled = true;
+        setTimeout(function() {
+            sampled = false; 
+        }, 16);
+    }
 }

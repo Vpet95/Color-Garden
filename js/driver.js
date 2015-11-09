@@ -1,6 +1,4 @@
 
-
-
 //initialize box position, color, starting direction, width, and height  
 function init() {
 	//set up canvas width and height 
@@ -10,14 +8,7 @@ function init() {
 	ctxt.canvas.height = window.innerHeight;
 
 	//create event listener for mouse movement 
-	c.addEventListener("mousemove", function(ev) {
-		var mouseX = ev.clientX;
-		var mouseY = ev.clientY;
-
-		var tempContext = this.getContext("2d");
-		var data = tempContext.getImageData(mouseX, mouseY, 1, 1).data;
-		var tempC = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
-	})
+	c.addEventListener("mousemove", getColors);
 
 	//set up width and height -> create a square based on the smaller of width and height  
 	width = (window.innerWidth < window.innerHeight) ? 
@@ -88,7 +79,7 @@ function animate() {
 		var aud = document.getElementById(audId);
 		aud.load();
 		aud.play();
-		console.log("Playing: " + audId);
+		
 		//create a new ghost
 		ghosts.push({
 			x: posX,
