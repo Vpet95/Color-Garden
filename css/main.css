@@ -37,5 +37,8 @@ html, body {
     width: 401px;
     height: 112px;
     margin: 0 auto;
-    margin-top: 40%;
+
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }

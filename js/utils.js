@@ -2,7 +2,7 @@
 //initial values 
 var posX = 0, posY = 0, width = 0, height = 0, collision = false; 
 var hex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
-var audioSamples = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r'];
+var audioSamples = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't'];
 var color = "#000000";
 var dirX = 0, dirY = 0; 
 var ghosts = []; //ghost squares

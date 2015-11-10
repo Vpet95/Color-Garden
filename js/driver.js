@@ -18,6 +18,11 @@ function init() {
 		//only a success if a color what actually copied 
 	    if(e.text != "" && typeof(e.text) != 'undefined' && e.text.charAt(0) == '#') {
 	    	document.getElementById("colorLabel").innerHTML = "Copied!";
+	    	var audId = (Math.floor(Math.random() * 2) == 0) ? 's' : 't';
+	    	var copyAud = document.getElementById(audId);
+	    	copyAud.volume = 0.5;
+	    	copyAud.load();
+	    	copyAud.play();
 	    }
 	});
 
