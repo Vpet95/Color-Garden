@@ -18,16 +18,24 @@ html, body {
 #colorLabel {
 	z-index: 100;
 	font-family: 'Raleway', sans-serif;
-	color: #C9C9C9;
 	font-size: 6em; 
+	position: absolute;
 	display: block;
 	padding: 0;
 	margin: 0;
-	margin-left: 33%;
-	position: absolute;
-	top: 42%;
+	color: #C9C9C9;
 }
 
 .audio {
 	z-index: 1;
+}
+
+#labelContainer {
+    width: auto;
+    display: block;
+    /* position: absolute; */
+    width: 401px;
+    height: 112px;
+    margin: 0 auto;
+    margin-top: 40%;
 }

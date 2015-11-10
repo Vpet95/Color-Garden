@@ -12,6 +12,7 @@
 		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 
 		<!-- JS --> 
+		<script src="node_modules/clipboard/dist/clipboard.min.js"></script>
 		<script src="js/polyfill.js"></script>
 		<script src="js/utils.js"></script>
 		<script src="js/driver.js"></script>
@@ -73,8 +74,12 @@
 			<source src="assets/audio/18.ogg" type="audio/ogg">
 		</audio>
 
-		<canvas id="screen"></canvas>
+		<!-- The main interactive element of the app, utilizes clipboard.js to copy colors to clipboard -->
+		<canvas id="screen" data-clipboard-text=""></canvas>
 
-		<p id="colorLabel"></p>
+		<!-- Displays color on screen -->
+		<div id="labelContainer">
+			<p id="colorLabel"></p>
+		</div>
 	</body>
 </html>

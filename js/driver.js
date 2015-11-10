@@ -10,6 +10,22 @@ function init() {
 	//create event listener for mouse movement 
 	c.addEventListener("mousemove", getColors);
 
+	//initialize clipboard.js and bind it to the canvas
+	var cp = new Clipboard('#screen'); //clipboard.js
+
+	//define actions to take on successful copy
+	cp.on('success', function(e) {
+		//only a success if a color what actually copied 
+	    if(e.text != "" && typeof(e.text) != 'undefined' && e.text.charAt(0) == '#') {
+	    	document.getElementById("colorLabel").innerHTML = "Copied!";
+	    }
+	});
+
+	//define actions to take on unsuccessful copy
+	cp.on('error', function(e) {
+	    console.log("Problem copying: " + e.action, e.trigger);
+	});
+
 	//set up width and height -> create a square based on the smaller of width and height  
 	width = (window.innerWidth < window.innerHeight) ? 
 			Math.floor(window.innerWidth * 0.2) : Math.floor(window.innerHeight * 0.2);
@@ -27,29 +43,15 @@ function init() {
 	color = generateColor();
 
 	//set up initial direction 
-	dirX = Math.floor(Math.random() * 180) + 1;
+	dirX = Math.floor(Math.random() * 10) + 1;
 	var x_sign = (Math.floor(Math.random() * 10) + 1) > 5 ? 1 : -1;
 
-	dirY = Math.floor(Math.random() * 180) + 1;
+	dirY = Math.floor(Math.random() * 10) + 1;
 	var y_sign = (Math.floor(Math.random() * 10) + 1) > 5 ? 1 : -1;	
 
-	//include sign and reduce
-	if(dirX < dirY) {
-		dirX = (dirX * x_sign) / dirX;
-		dirY = (dirY * y_sign) / dirX;
-	} else {
-		dirX = (dirX * x_sign) / dirY;
-		dirY = (dirY * y_sign) / dirY
-	}
-
-	//restrict number to keep animation a reasonable speed 
-	if(dirX >= 30 || dirX <= -30) {
-		dirX /= 5;
-	} 
-
-	if(dirY >= 30 || dirY <= -30) {
-		dirY /= 5;
-	}	
+	//include sign 
+	dirX *= x_sign;
+	dirY *= y_sign;
 
 	animate();
 }
@@ -113,7 +115,7 @@ function animate() {
 	//clear the canvas 
 	setTimeout(function() {
 		ctxt.clearRect(0, 0, ctxt.canvas.width, ctxt.canvas.height);
-	}, 45);
+	}, 40);
 
 	//request a new animation frame and call animate recursively
 	window.requestAnimationFrame(animate);
