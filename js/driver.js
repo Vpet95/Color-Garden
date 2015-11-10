@@ -45,12 +45,10 @@ function init() {
 	//restrict number to keep animation a reasonable speed 
 	if(dirX >= 30 || dirX <= -30) {
 		dirX /= 5;
-		console.log("dirX : " + dirX);
 	} 
 
 	if(dirY >= 30 || dirY <= -30) {
 		dirY /= 5;
-		console.log("dirY : " + dirY);
 	}	
 
 	animate();
@@ -115,7 +113,7 @@ function animate() {
 	//clear the canvas 
 	setTimeout(function() {
 		ctxt.clearRect(0, 0, ctxt.canvas.width, ctxt.canvas.height);
-	}, 17);
+	}, 45);
 
 	//request a new animation frame and call animate recursively
 	window.requestAnimationFrame(animate);

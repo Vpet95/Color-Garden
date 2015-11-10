@@ -47,7 +47,6 @@ var getColors = function(ev) {
         var data = tempContext.getImageData(mouseX, mouseY, 1, 1).data;
         var tempC = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
 
-        console.log(mouseX, mouseY, tempC);
         if(tempC != "#000000") {
             var lbl = document.getElementById("colorLabel");
             lbl.innerHTML = tempC;
@@ -56,6 +55,6 @@ var getColors = function(ev) {
         sampled = true;
         setTimeout(function() {
             sampled = false; 
-        }, 16);
+        }, 50);
     }
 }
