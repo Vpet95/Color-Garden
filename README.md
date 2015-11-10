@@ -9,9 +9,13 @@ One of my major goals with this app is to make the animations as smooth as possi
 
 ----
 For anyone interested in working on this, you need to run 
-       npm install clipboard
+```
+    npm install clipboard
+```
 or
-       bower install clipboard 
+```
+    bower install clipboard 
+```
 to grab the clipboard.js dependency. 
 
 Have fun! 
