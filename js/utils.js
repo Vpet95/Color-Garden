@@ -2,11 +2,13 @@
 //initial values 
 var posX = 0, posY = 0, width = 0, height = 0, collision = false; 
 var hex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
-var audioSamples = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't'];
+var audioSamples = [];
 var color = "#000000";
 var dirX = 0, dirY = 0; 
 var ghosts = []; //ghost squares
 var sampled = false;
+var tempContext;
+var sound = true;
 
 //generates a random hex color
 function generateColor() {
@@ -16,6 +18,12 @@ function generateColor() {
 	}
 
 	return c;
+}
+
+function randBetween(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 //convert hexadecimal representation of color into rgb
@@ -39,23 +47,17 @@ function rgbToHex(r, g, b) {
 
 //get the colors from 
 var getColors = function(ev) {
-    if(!sampled) {
-        var mouseX = ev.clientX;
-        var mouseY = ev.clientY;
+    var mouseX = ev.clientX;
+    var mouseY = ev.clientY;
 
-        var tempContext = this.getContext("2d");
-        var data = tempContext.getImageData(mouseX, mouseY, 1, 1).data;
-        var tempC = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
+    tempContext = (typeof(tempContext) == 'undefined' ? this.getContext("2d") : tempContext);
+    var data = tempContext.getImageData(mouseX, mouseY, 1, 1).data;
+    var tempC = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
 
-        if(tempC != "#000000" && tempC != "#FFFFFF") {
-            document.getElementById("screen").setAttribute("data-clipboard-text", tempC);
-            var lbl = document.getElementById("colorLabel");
-            lbl.innerHTML = tempC;
-            lbl.style.color = tempC;
-        }
-        sampled = true;
-        setTimeout(function() {
-            sampled = false; 
-        }, 40);
+    if(tempC != "#000000" && tempC != "#FFFFFF") {
+        document.getElementById("screen").setAttribute("data-clipboard-text", tempC);
+        var lbl = document.getElementById("colorLabel");
+        lbl.textContent = tempC;
+        lbl.style.color = tempC;
     }
 }

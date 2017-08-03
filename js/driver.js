@@ -1,6 +1,8 @@
 
 //initialize box position, color, starting direction, width, and height  
 function init() {
+	audioSamples = document.getElementsByClassName('audio');
+
 	//set up canvas width and height 
 	var c = document.getElementById("screen");
 	var ctxt = c.getContext("2d");
@@ -17,7 +19,7 @@ function init() {
 	cp.on('success', function(e) {
 		//only a success if a color what actually copied 
 	    if(e.text != "" && typeof(e.text) != 'undefined' && e.text.charAt(0) == '#') {
-	    	document.getElementById("colorLabel").innerHTML = "Copied!";
+	    	document.getElementById("colorLabel").textContent = "Copied!";
 	    	var audId = (Math.floor(Math.random() * 2) == 0) ? 's' : 't';
 	    	var copyAud = document.getElementById(audId);
 	    	copyAud.volume = 0.5;
@@ -61,6 +63,7 @@ function init() {
 	animate();
 }
 
+var wait = false;
 function animate() {
 	var c = document.getElementById("screen");
 	var ctxt = c.getContext("2d");
@@ -80,10 +83,11 @@ function animate() {
 	}
 
 	if(collision) {
-		var audId = audioSamples[Math.floor(Math.random() * 18)];
-		var aud = document.getElementById(audId);
-		aud.load();
-		aud.play();
+		if(sound && audioSamples.length > 0) {
+			var aud = audioSamples[randBetween(0, audioSamples.length - 3)];
+			aud.load();
+			aud.play();
+		}
 		
 		//create a new ghost
 		ghosts.push({
@@ -118,11 +122,28 @@ function animate() {
 	posY += dirY;
 
 	//clear the canvas 
-	setTimeout(function() {
-		ctxt.clearRect(0, 0, ctxt.canvas.width, ctxt.canvas.height);
-	}, 40);
+	if(!wait) {
+		wait = true;
+		setTimeout(function() {
+			ctxt.clearRect(0, 0, ctxt.canvas.width, ctxt.canvas.height);
+			wait = false;
+		}, 0);	
+	}
+	
 
 	//request a new animation frame and call animate recursively
 	window.requestAnimationFrame(animate);
 }
 
+function toggleSound(e) {
+	e.stopPropagation();
+	sound = !sound;
+
+	if(sound) {
+		document.getElementsByClassName('sound-switch-thumb')[0].style.marginLeft = "66%";
+		document.getElementsByClassName('sound-switch-label')[0].textContent = "Sound ON";
+	} else {
+		document.getElementsByClassName('sound-switch-thumb')[0].style.marginLeft = "3%";
+		document.getElementsByClassName('sound-switch-label')[0].textContent = "Sound OFF";
+	}
+}

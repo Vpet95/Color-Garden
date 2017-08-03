@@ -84,8 +84,16 @@
 		<canvas id="screen" data-clipboard-text=""></canvas>
 
 		<!-- Displays color on screen -->
-		<div id="labelContainer">
-			<p id="colorLabel"></p>
+		<p id="colorLabel"></p>
+
+		<div class="settings-container">
+			<p class="sound-switch-label">Sound ON</p>
+
+			<div class="sound-switch-border" onclick="toggleSound(event)">
+				<div class="sound-switch-thumb"></div>
+			</div>
+
+			<img class="palette-button" src="assets/palette.png" />
 		</div>
 	</body>
 </html>
