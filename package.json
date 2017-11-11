@@ -1,0 +1,31 @@
+{
+  "name": "color-garden",
+  "version": "1.0.0",
+  "description": "A relaxing, and fun color pallette picker. ",
+  "main": "index.js",
+  "dependencies": {
+    "clipboard": "^1.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Grandclosing/Color-Garden.git"
+  },
+  "keywords": [
+    "Color",
+    "Garden",
+    "Relaxation",
+    "Fun",
+    "Color",
+    "Picker"
+  ],
+  "author": "Vuk Petrovic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Grandclosing/Color-Garden/issues"
+  },
+  "homepage": "https://github.com/Grandclosing/Color-Garden#readme"
+}
