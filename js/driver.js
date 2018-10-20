@@ -127,7 +127,7 @@ function animate() {
 		setTimeout(function() {
 			ctxt.clearRect(0, 0, ctxt.canvas.width, ctxt.canvas.height);
 			wait = false;
-		}, 0);	
+		}, 10);	
 	}
 	
 
